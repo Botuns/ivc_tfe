@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { RegisterAtfal } from '../services/api';
+import { ToastContainer } from 'react-toastify';
 const AddAtfal = () => {
   const [fullName, setFullName] = useState('');
   const [age, setAge] = useState('');
@@ -9,20 +10,26 @@ const AddAtfal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("done")
+    const data = {
+      fullName,age,muqami,dila
+    }
     // Here you can perform actions with the collected data,
+
     // such as sending it to a server or updating the state of a parent component.
-    console.log('Form submitted with the following data:');
-    console.log('Full Name:', fullName);
-    console.log('Age:', age);
-    console.log('Dil\'a:', dila);
-    console.log('Muqami:', muqami);
-    console.log('VIP:', isVIP);
+
+    RegisterAtfal(data)
+
   };
 
   return (
-    <div className="bg-green-500 text-white p-6 rounded-lg shadow-lg">
+    <div className="bg-green-500 text-black p-6 rounded-lg shadow-lg">
+      <ToastContainer
+    autoClose={5000}
+    hideProgressBar={true}
+/>
       <h2 className="text-2xl font-semibold mb-4">Add New Tifl</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="mb-4">
           <label htmlFor="fullname" className="block mb-1">
             Full Name:
@@ -102,6 +109,7 @@ const AddAtfal = () => {
         <button
           type="submit"
           className="bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-all"
+          onClick={handleSubmit}
         >
             <span className='mr-4'>
                 <span>

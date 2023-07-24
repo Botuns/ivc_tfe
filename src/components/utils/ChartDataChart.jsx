@@ -77,7 +77,7 @@ const ChartDataChart = ({ participants, atfal }) => {
       },
     },
     indexAxis: 'x',
-    barPercentage: 0.5, 
+    barPercentage: 0.3, 
   };
 
   return (

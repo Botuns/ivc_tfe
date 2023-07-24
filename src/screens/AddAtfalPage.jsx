@@ -5,8 +5,9 @@ import { Outlet } from 'react-router-dom';
 import DataCard from '../components/DataCard';
 import ChartDataChart from '../components/utils/ChartDataChart';
 import Cta from '../components/Cta';
+import AddAtfal from '../components/AddAtfal';
 
-const Home = () => {
+const AddAtfalPage = () => {
     const participants = 3200;
     const atfal = 1200;
 
@@ -28,18 +29,8 @@ const Home = () => {
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
               {/* <Outlet />   others goes here*/}  
-              <div className='flex flex-row'>
-              <DataCard/>
-              <DataCard/>
-              <DataCard/>
-              </div>
-
-              <ChartDataChart participants={participants} atfal={atfal} />
-
-
-
+              <AddAtfal/>
             </div>
-            <Cta/>
           </main>
           {/* <!-- ===== Main Content End ===== --> */}
         </div>
@@ -50,4 +41,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default AddAtfalPage;
