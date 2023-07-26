@@ -6,18 +6,11 @@ import { getCountOfAllAtfal } from '../services/api';
 import DataCard from '../components/DataCard';
 import ChartDataChart from '../components/utils/ChartDataChart';
 import Cta from '../components/Cta';
+import AllAtfal from '../components/AllAtfal';
 
-const Home = () => {
-    const [atfal,setAtfal] = useState(0)
-    
-const fetch =async()=>{
-  const a = await getCountOfAllAtfal()
-  setAtfal(a||0)
-}
-    const participants = 10;
+const AllAtfalPage = () => {
 
     useEffect(() => {
-      fetch()
     }, []); // Add 'participants' as a dependency
     
     
@@ -40,18 +33,8 @@ const fetch =async()=>{
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
               {/* <Outlet />   others goes here*/}  
-              <div className='flex flex-row'>
-              <DataCard figure={atfal} name='Total Atfal'/>
-              <DataCard/>
-              <DataCard/>
-              </div>
-
-              <ChartDataChart participants={participants} atfal={atfal} />
-
-
-
+              <AllAtfal/>              
             </div>
-            <Cta/>
           </main>
           {/* <!-- ===== Main Content End ===== --> */}
         </div>
@@ -62,4 +45,4 @@ const fetch =async()=>{
   );
 };
 
-export default Home;
+export default AllAtfalPage;

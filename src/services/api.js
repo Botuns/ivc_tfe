@@ -2,37 +2,37 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const base_url= 'http://localhost:4000/api'
+
 // registers new tifl
 export const RegisterAtfal = async (data) => {
-  const { fullname, age, dila, muqami, stage } = data;
+  const { fullName, age, dila, muqami, stage } = data;
 
   try {
-    // const response = await axios.post("https://ileojaapp.com.ng/?id=user3&email_sent", {
-    //   fullname,
-    //   age,
-    //   dila,
-    //   muqami,
-    //   stage,
-    // });
-    // if(!response){
-    //     toast.error('unable to connect right now')
-    // }
+    const response = await axios.post(`${base_url}/atfal/new`, {
+      fullName,
+      age,
+      dila,
+      muqami,
+      stage,
+    });
+    console.log(response)
+    if(!response){
+        toast.error('unable to connect right now')
+    }
 
-    // Handle successful response here (if needed)
-    // For example, you can return or do something with the response data
-    // if(response.data.success===true){
-    //     toast.success('Tifl Registered sucessfully')
-    // }
-    // return response.data;
-    toast.success('success',{position:'top-center'})
-    return data
+    
+    if(response.data.status===true){
+       toast.success('Atfal Registered sucessfully',{position:'top-center'})    }
+     
+
+    return response.data;
+
   } catch (error) {
     // Handle errors using toast notifications
     toast.error("An error occurred. Please try again later.");
 
-    // You can also show the error message from the server if available
-    // For example, if the server returns an error message in the response
-    // you can display it in the toast notification
+    
     if (error.response && error.response.data && error.response.data.message) {
       toast.error(error.response.data.message);
     }
@@ -44,3 +44,36 @@ export const RegisterAtfal = async (data) => {
     throw error;
   }
 };
+
+
+export const getCountOfAllAtfal = async()=>{
+try {
+  const response = await axios.get(`${base_url}/atfal/counts`)
+  console.log(response.data.count)
+  if(!response){
+    toast.error('cant connect right now and i don\'t know why')
+  }
+    if(response.data.status !== true){
+      toast.error('An error occured while fetching number')
+    }  
+    return response.data.count
+} catch (error) {
+  toast.error(error)
+}
+}
+
+export const getAllAtfal = async()=>{
+  try {
+    const response = await axios.get(`${base_url}/atfal`)
+    console.log(response.data.allAtfal)
+    if(!response){
+      toast.error('cant connect right now and i don\'t know why')
+    }
+      if(response.data.status !== true){
+        toast.error('An error occured while fetching lists')
+      }  
+      return response.data.allAtfal
+  } catch (error) {
+    toast.error(error)
+  }
+  }
