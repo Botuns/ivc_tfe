@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getAllAtfal, getAllAtfalByIds } from '../services/api';
+import { getAllAtfal, getAllAtfalByIds, showToast } from '../services/api';
 import { navigate } from 'wouter/use-location';
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 
 const AllAtfal = () => {
@@ -17,7 +19,7 @@ const AllAtfal = () => {
     e.preventDefault()
     const d = ids
     if(d.length < 1){
-      toast.error('You have not selected any data')
+      showToast()
     }
     else{
       const response = await getAllAtfalByIds(d);
@@ -36,6 +38,7 @@ const AllAtfal = () => {
       const newData = [...prevData];
       newData[index].printBtn = 'Added';
       setids((prevIds) => [...prevIds, newData[index]._id]);
+      toast('Added Sucessfully Don\'t worry')
       return newData;
     });
   };
@@ -57,7 +60,7 @@ const AllAtfal = () => {
   }, [data, searchTerm]);
 
   // Number of items to display per page
-  const itemsPerPage = 8;
+  const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
 
   // Function to handle pagination
@@ -74,7 +77,8 @@ const AllAtfal = () => {
     <>
       <div>
         <ToastContainer/>
-        <div>
+        <Toaster/>
+        <div className='flex flex-row gap-4'>
           {/* Search input */}
           <input
             type="text"
@@ -83,7 +87,9 @@ const AllAtfal = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="p-2 border border-gray-300 rounded"
           />
+          <p className='bg-blue-500 text-white font-bold p-1 rounded text-center'>selected data to print = {ids.length||0}</p>
         </div>
+        
         <p onClick={AddtoPrint} className="px-1 w-24 text-center mb-4 text-sm ml-[25cm] h-[1cm] bg-red-500 rounded hover:cursor-pointer">
         Print Selected
         </p>

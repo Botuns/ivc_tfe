@@ -8,6 +8,7 @@ import NotFound from './components/NotFound';
 import UserDetailsPage from './components/UserDetailsPage';
 import AllAtfalPage from './screens/AllAtfalPage';
 import UserCardPag from './components/UserCardPag';
+import Statistics from './screens/Statistics';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path='/atfal/cards'><UserCardPag/></Route>
         <Route path='/print-details'><UserDetailsPage/></Route>
         <Route path='/see-all-atfal'><AllAtfalPage/></Route>
+        <Route path='/statistics'><Statistics/></Route>
+
 
 
 

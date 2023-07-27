@@ -1,20 +1,10 @@
 import React from 'react';
-import { PDFViewer, Document, Page, View, StyleSheet } from '@react-pdf/renderer';
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
+import { navigate } from 'wouter/use-location';
 
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4',
-    padding: 10,
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-  },
-});
+const back=()=>{
+navigate('/see-all-atfal')
+  
+}
 
 const UserCard = ({ user }) => {
   return (
@@ -88,12 +78,19 @@ const UserCardGrid = ({ users }) => {
           </div>
         ))}
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-4">
         <button
           className="mt-6 px-4 py-2 bg-green-500 text-white rounded-lg shadow-md"
           onClick={() => generatePDF()}
         >
           Print to PDF
+        </button>
+        <button
+          className="mt-6 px-4 py-2 bg-green-500 text-white rounded-lg shadow-md"
+          // onClick={back()}
+          onClick={()=>back()}
+        >
+          Go back
         </button>
         {/* ... Other buttons or actions ... */}
       </div>

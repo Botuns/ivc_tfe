@@ -53,6 +53,17 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="mb-4">
+              <Link
+                to="/statistics"
+                className="flex items-center p-2 rounded-lg transition-all hover:bg-green-800"
+              >
+                <span className='mr-4'>
+                <i class="fa-solid fa-table"></i>
+                </span>
+                Statistics cards
+              </Link>
+            </li>
+            <li className="mb-4">
               <div className="flex items-center p-2 rounded-lg cursor-pointer transition-all hover:bg-green-600">
                 <span className='mr-4'>
                 <i class="fa-solid fa-table-list"></i>

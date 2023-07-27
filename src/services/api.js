@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { navigate } from 'wouter/use-location';
 
 const base_url= 'http://localhost:4000/api'
 
@@ -23,9 +24,11 @@ export const RegisterAtfal = async (data) => {
 
     
     if(response.data.status===true){
-       toast.success('Atfal Registered sucessfully',{position:'top-center'})    }
-     
-
+       await toast.success('Atfal Registered sucessfully',{position:'top-center'})    
+      
+      
+      }
+      
     return response.data;
 
   } catch (error) {
@@ -41,7 +44,32 @@ export const RegisterAtfal = async (data) => {
     console.error("Error in RegisterAtfal:", error);
 
     // Throw the error to the calling function so it can handle it further if needed
-    throw error;
+  }
+};
+export const Login = async (data) => {
+  const { username, password } = data;
+
+  try {
+    const response = await axios.post(`${base_url}/auth/login`, {
+      username,
+      password
+    });
+    console.log(response)
+    if(!response){
+      toast.error('unable to connect right now')
+
+    }
+    if(response.status===404){
+      toast.error('Invalid Credentials')
+    }
+    else{
+      toast.success('Login Successful!')
+      navigate('/home')
+    }
+
+  } catch (error) {
+    // Handle errors using toast notifications
+    toast.error(error.message);
   }
 };
 
@@ -49,7 +77,6 @@ export const RegisterAtfal = async (data) => {
 export const getCountOfAllAtfal = async()=>{
 try {
   const response = await axios.get(`${base_url}/atfal/counts`)
-  console.log(response.data.count)
   if(!response){
     toast.error('cant connect right now and i don\'t know why')
   }
@@ -65,7 +92,6 @@ try {
 export const getAllAtfal = async()=>{
   try {
     const response = await axios.get(`${base_url}/atfal`)
-    console.log(response.data.allAtfal)
     if(!response){
       toast.error('cant connect right now and i don\'t know why')
     }
@@ -96,3 +122,24 @@ export const getAllAtfal = async()=>{
       toast.error(error)
     }
     }
+
+    export const getAllAtfalByDila = async(dila)=>{
+      console.log('seen')
+    try {
+    const response = await axios.get(`${base_url}/atfal/dila/${dila}`); // Pass ids as a URL parameter
+      console.log(response.data.length)
+      if(!response){
+        toast.error('cant connect right now and i don\'t know why')
+      }
+        if(response ===500){
+          toast.error('An error occured while fetching lists')
+        }  
+        return response.data.length
+    } catch (error) {
+      toast.error(error)
+    }
+    }
+
+export const showToast=()=>{
+  return toast.error('You have not selected any tag to print')
+}

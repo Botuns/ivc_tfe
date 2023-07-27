@@ -9,7 +9,7 @@ import Cta from '../components/Cta';
 
 const Home = () => {
     const [atfal,setAtfal] = useState(0)
-    
+    const [attendee,setAttendee]= useState(0)    
 const fetch =async()=>{
   const a = await getCountOfAllAtfal()
   setAtfal(a||0)
@@ -42,8 +42,8 @@ const fetch =async()=>{
               {/* <Outlet />   others goes here*/}  
               <div className='flex flex-row'>
               <DataCard figure={atfal} name='Total Atfal'/>
-              <DataCard/>
-              <DataCard/>
+              <DataCard figure={attendee} name={'Total Attendees'}/>
+              <DataCard figure={atfal + attendee} name={'Total Present'}/>
               </div>
 
               <ChartDataChart participants={participants} atfal={atfal} />

@@ -10,7 +10,7 @@ const DataCard = ({ figure, name }) => {
         </span>
         <div className="text-6xl font-semibold text-black">{figure||0}</div>
       </div>
-      <div className="text-xl text-white bg-black p-1 rounded text-center">{name||"Name"}</div>
+      <div className="text-xl text-black bg-white shadow-md p-1 rounded text-center">{name||"Name"}</div>
     </div>
   );
 };
