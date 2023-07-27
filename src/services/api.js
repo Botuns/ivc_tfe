@@ -77,3 +77,22 @@ export const getAllAtfal = async()=>{
     toast.error(error)
   }
   }
+
+  export const getAllAtfalByIds = async(d)=>{
+      const ids = [...d];
+    console.log(`Thiese are the ids: ${ids}`)
+
+    try {
+    const response = await axios.get(`${base_url}/atfal/${ids}`); // Pass ids as a URL parameter
+      // console.log(response.data.lists)
+      if(!response){
+        toast.error('cant connect right now and i don\'t know why')
+      }
+        if(response.data.status !== true){
+          toast.error('An error occured while fetching lists')
+        }  
+        return response.data.lists
+    } catch (error) {
+      toast.error(error)
+    }
+    }

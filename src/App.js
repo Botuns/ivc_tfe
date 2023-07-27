@@ -7,6 +7,7 @@ import AddAtfalPage from './screens/AddAtfalPage';
 import NotFound from './components/NotFound';
 import UserDetailsPage from './components/UserDetailsPage';
 import AllAtfalPage from './screens/AllAtfalPage';
+import UserCardPag from './components/UserCardPag';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/new-tifl'><AddAtfalPage/></Route>
         <Route path='/home'><Home/></Route>
         <Route path='*'><NotFound/></Route>
+        <Route path='/atfal/cards'><UserCardPag/></Route>
         <Route path='/print-details'><UserDetailsPage/></Route>
         <Route path='/see-all-atfal'><AllAtfalPage/></Route>
 

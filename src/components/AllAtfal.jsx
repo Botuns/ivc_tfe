@@ -1,21 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { getAllAtfal } from '../services/api';
+import { getAllAtfal, getAllAtfalByIds } from '../services/api';
+import { navigate } from 'wouter/use-location';
+import { ToastContainer,toast } from 'react-toastify';
+
 
 const AllAtfal = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [printbtn,setPrintBtn]= useState('Add to bulk Print')
-
   const [ids, setids]=useState([])
 
   console.log(ids)
 
-  const AddtoPrint=(e)=>{
+  const AddtoPrint=async(e)=>{
     e.preventDefault()
-    setPrintBtn('Selected')
+    const d = ids
+    if(d.length < 1){
+      toast.error('You have not selected any data')
+    }
+    else{
+      const response = await getAllAtfalByIds(d);
+    localStorage.setItem('atfals',JSON.stringify(response))
+
+     navigate('/atfal/cards')
+    }
+    
 
   }
+
+
+  // Function to update printBtn state when "Add to Print" button is clicked
+  const handleAddToPrint = (index) => {
+    setData((prevData) => {
+      const newData = [...prevData];
+      newData[index].printBtn = 'Added';
+      setids((prevIds) => [...prevIds, newData[index]._id]);
+      return newData;
+    });
+  };
 
   const fetch = async () => {
     const response = await getAllAtfal();
@@ -46,9 +69,11 @@ const AllAtfal = () => {
   // Get the current page data
   const currentData = paginate(filteredData, currentPage);
 
+
   return (
     <>
       <div>
+        <ToastContainer/>
         <div>
           {/* Search input */}
           <input
@@ -106,14 +131,7 @@ const AllAtfal = () => {
                       View Details
                     </button>
                     <button
-                      onClick={() => {
-                        setData(prevData => {
-                          const newData = [...prevData];
-                          newData[index].printBtn = 'Added';
-                          setids([...ids,item._id])
-                          return newData;
-                        });
-                      }}
+                      onClick={() => handleAddToPrint(index)}
                       className="bg-green-500 text-white px-2 py-1 rounded"
                     >
                       {item.printBtn}
