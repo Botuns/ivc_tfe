@@ -96,7 +96,7 @@ const AddAtfal = () => {
             <option value='Oluyole-Onaara'>OLUYOLE-ONA-ARA</option>
             <option value='Omi-adio'>OMI-ADIO</option>
             <option value='Oyo'>OYO</option>
-            <option value=''></option>
+            <option value='Oke-ogun'>OKE-OGUN</option>
 
             {/* Add more options as needed */}
           </select>
