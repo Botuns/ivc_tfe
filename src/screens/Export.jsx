@@ -2,24 +2,17 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
-import { getCountOfAllAtfal, getCountOfAllAttendees } from '../services/api';
+import { getCountOfAllAtfal } from '../services/api';
 import DataCard from '../components/DataCard';
 import ChartDataChart from '../components/utils/ChartDataChart';
 import Cta from '../components/Cta';
+import AllAtfal from '../components/AllAtfal';
+import AllAttendee from '../components/AllAttendee';
+import ExportPage from './ExportPage';
 
-const Home = () => {
-    const [atfal,setAtfal] = useState(0)
-    const [attendee,setAttendee]= useState(0)    
-const fetch =async()=>{
-  const a = await getCountOfAllAtfal()
-  const b = await getCountOfAllAttendees()
-  setAtfal(a||0)
-  setAttendee(b)
-}
-    const participants = 10;
+const Export = () => {
 
     useEffect(() => {
-      fetch()
     }, []); // Add 'participants' as a dependency
     
     
@@ -42,18 +35,8 @@ const fetch =async()=>{
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
               {/* <Outlet />   others goes here*/}  
-              <div className='flex flex-row'>
-              <DataCard figure={atfal} name='Total Atfal'/>
-              <DataCard figure={attendee} name={'Total Attendees'}/>
-              <DataCard figure={atfal + attendee} name={'Total Present'}/>
-              </div>
-
-              <ChartDataChart participants={participants} atfal={atfal} />
-
-
-
+              <ExportPage/>              
             </div>
-            <Cta/>
           </main>
           {/* <!-- ===== Main Content End ===== --> */}
         </div>
@@ -64,4 +47,4 @@ const fetch =async()=>{
   );
 };
 
-export default Home;
+export default Export;

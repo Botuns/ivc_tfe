@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
+import { createAttendee } from '../services/api';
+import { ToastContainer } from 'react-toastify';
 
 const AddAttendeeForm = () => {
   const [fullName, setFullName] = useState('');
-  const [auxiliary, setAuxiliary] = useState('lajna'); // Default to 'lajna'
-  const [type, setType] = useState('Handler'); // Default to 'Handler'
+  const [auxiliary, setAuxiliary] = useState(''); // Default to 'lajna'
+  const [type, setType] = useState(''); // Default to 'Handler'
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    const attendeeData={
+      fullName,auxiliary,type
+    }
+    await createAttendee(attendeeData)
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <div>
+      <ToastContainer/>
+        <p className='p-3 rounded bg-green-500 text-center font-bold text-white text-xl'>Register: Attendee</p>
+        <div  className="space-y-4 mt-8 shadow-lg p-4 w-[80%] justify-center items-center ml-24">
       <div>
         <label htmlFor="fullName" className="block text-gray-700">
           Full Name:
@@ -20,7 +29,7 @@ const AddAttendeeForm = () => {
           id="fullName"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          className="block w-full px-4 py-2 rounded-lg shadow-sm focus:ring focus:ring-green-200"
+          className="block w-full px-4 py-2 rounded-lg shadow-sm focus:ring focus:ring-green-200 border border-green-500"
           required
         />
       </div>
@@ -32,9 +41,10 @@ const AddAttendeeForm = () => {
           id="auxiliary"
           value={auxiliary}
           onChange={(e) => setAuxiliary(e.target.value)}
-          className="block w-full px-4 py-2 rounded-lg shadow-sm focus:ring focus:ring-green-200"
+          className="block w-full px-4 py-2 rounded-lg shadow-sm focus:ring focus:ring-green-200 border border-green-500"
           required
         >
+          <option value="">Select an auxiliary</option>
           <option value="lajna">Lajna</option>
           <option value="khudam">Khudam</option>
           <option value="ansarullah">Ansarullah</option>
@@ -48,9 +58,10 @@ const AddAttendeeForm = () => {
           id="type"
           value={type}
           onChange={(e) => setType(e.target.value)}
-          className="block w-full px-4 py-2 rounded-lg shadow-sm focus:ring focus:ring-green-200"
+          className="block w-full px-4 py-2 rounded-lg shadow-sm focus:ring focus:ring-green-200 border border-green-500"
           required
         >
+          <option value="">Select a Duty type</option>
           <option value="Handler">Handler</option>
           <option value="Guest">Guest</option>
           <option value="Security">Security</option>
@@ -62,10 +73,11 @@ const AddAttendeeForm = () => {
           <option value="Volunteer">Volunteer</option>
         </select>
       </div>
-      <button type="submit" className="px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600">
+      <button onClick={handleSubmit} className="px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 ">
         Add Attendee
       </button>
-    </form>
+    </div>
+    </div>
   );
 };
 

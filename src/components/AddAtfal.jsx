@@ -128,10 +128,11 @@ const AddAtfal = () => {
             className="w-full px-4 py-2 border border-green-500 rounded-lg focus:outline-none text-black focus:border-green-700"
           >
             <option value="">Select Stage</option>
-            <option value='vip'>Vip</option>
-            <option value='stage_one'>Stage-One</option>
-            <option value='stage_two'>Stage-Two</option>
-            <option value='stage_three'>Stage-Three</option>
+            <option value='stage_one'>Stage-One(5-7)</option>
+            <option value='stage_two'>Stage-Two(8-10)</option>
+            <option value='stage_three'>Stage-Three(11-12)</option>
+            <option value='stage_four'>Stage-Four(13-15)</option>
+
             
             {/* Add more options as needed */}
           </select>

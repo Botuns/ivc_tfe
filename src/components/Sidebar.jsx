@@ -84,13 +84,13 @@ const Sidebar = () => {
                 </li>
                 <li>
                   <Link
-                    to="/see-all-participants"
+                    to="/see-all-attendee"
                     className="flex items-center transition-all hover:text-black"
                   >
                     <span className='mr-4'>
                     <i class="fa-solid fa-users"></i>
                     </span>
-                    See All Participants
+                    See All attendee
                   </Link>
                 </li>
               </ul>

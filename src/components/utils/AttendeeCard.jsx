@@ -2,7 +2,7 @@ import React from 'react';
 import { navigate } from 'wouter/use-location';
 
 const back=()=>{
-navigate('/see-all-atfal')
+navigate('/see-all-attendee')
   
 }
 
@@ -22,24 +22,20 @@ const UserCard = ({ user }) => {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <p className="text-sm font-medium">Full Name:</p>
-            <p className="text-sm font-semibold">{user._fullName}</p>
+            <p className="text-sm font-semibold">{user.fullName}</p>
 
-            <p className="text-sm font-medium">Age:</p>
-            <p className="text-lg font-semibold">{user._age}</p>
+            <p className="text-sm font-medium mt-4">Auxiliary:</p>
+            <p className="text-lg font-semibold">{user.auxiliary}</p>
 
-            <p className="text-sm font-medium">Muqami:</p>
-            <p className="text-sm font-semibold">{user._muqami}</p>
           </div>
 
           <div>
-            <p className="text-sm font-medium">Stage:</p>
-            <p className="text-sm font-semibold">{user._stage}</p>
+            <p className="text-sm font-medium">Type:</p>
+            <p className="text-sm font-semibold">{user.type}</p>
 
-            <p className="text-sm font-medium">Tag Number:</p>
-            <p className="text-sm font-semibold">{user._tagNumber}</p>
+            <p className="text-sm font-medium mt-4">Tag Number:</p>
+            <p className="text-sm font-semibold">{user.tagNumber}</p>
 
-            <p className="text-sm font-medium">Dila:</p>
-            <p className="text-sm font-semibold">{user._dila}</p>
           </div>
         </div>
 
@@ -60,7 +56,7 @@ const generatePDF = () => {
   window.print()
 };
 
-const UserCardGrid = ({ users }) => {
+const AttendeeCard = ({ users }) => {
   const rows = Math.ceil(users.length/3);
 
   return (
@@ -99,4 +95,4 @@ const UserCardGrid = ({ users }) => {
        );
 };
 
-export default UserCardGrid;
+export default AttendeeCard;

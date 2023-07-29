@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getAllAtfal, getAllAtfalByIds, showToast } from '../services/api';
+import { getAllAtfal, getAllAtfalByIds, getAllAttendeeByIds, getAllAttendees, showToast } from '../services/api';
 import { navigate } from 'wouter/use-location';
 import { ToastContainer } from 'react-toastify';
 import toast, { Toaster } from 'react-hot-toast';
 
 
 
-const AllAtfal = () => {
+const AllAttendee = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredData, setFilteredData] = useState([]);
@@ -26,10 +26,10 @@ const AllAtfal = () => {
       showToast()
     }
     else{
-      const response = await getAllAtfalByIds(d);
-    localStorage.setItem('atfals',JSON.stringify(response))
+      const response = await getAllAttendeeByIds(d);
+    localStorage.setItem('attendees',JSON.stringify(response))
 
-     navigate('/atfal/cards')
+     navigate('/attendees/cards')
     }
     
 
@@ -55,7 +55,7 @@ const AllAtfal = () => {
 };
 
   const fetch = async () => {
-    const response = await getAllAtfal();
+    const response = await getAllAttendees();
     setData(response);
     setData(response?.map(item => ({ ...item, printBtn: 'Add to Bulk Print' })));
   };
@@ -67,7 +67,7 @@ const AllAtfal = () => {
 
   useEffect(() => {
     // Filter the data based on the search term
-    const filtered = data?.filter((item) => item._fullName.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filtered = data?.filter((item) => item.fullName.toLowerCase().includes(searchTerm.toLowerCase()));
     setFilteredData(filtered);
   }, [data, searchTerm]);
 
@@ -113,10 +113,10 @@ const AllAtfal = () => {
                   Full Name
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Age
+                  Auxiliary
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Dila
+                  Type
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Tag Number
@@ -133,11 +133,11 @@ const AllAtfal = () => {
               {currentData?.map((item,index) => (
                 <tr key={item._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {item._fullName}
+                    {item.fullName}
                   </td>
-                  <td className="px-6 py-4">{item._age}</td>
-                  <td className="px-6 py-4">{item._dila}</td>
-                  <td className="px-6 py-4">{item._tagNumber}</td>
+                  <td className="px-6 py-4">{item.auxiliary}</td>
+                  <td className="px-6 py-4">{item.type}</td>
+                  <td className="px-6 py-4">{item.tagNumber}</td>
                   <td className="px-6 py-4">{item.createdAt}</td>
                   <td className="px-6 py-4">
                     <button
@@ -184,4 +184,4 @@ const AllAtfal = () => {
   );
 };
 
-export default AllAtfal;
+export default AllAttendee;
