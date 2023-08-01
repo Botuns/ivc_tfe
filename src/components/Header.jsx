@@ -8,7 +8,7 @@ const Header = () => {
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="https://flowbite.com" class="flex items-center">
                 <img className='bg-green-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCqNuiuXCWRy76qvGIL6hFPRFwmUhcc_a7WQldY2NxoeB_QUYgeEb3xVWItmBAMp8kXWw&usqp=CAU" class="mr-3 h-6 sm:h-9" alt="MKAN Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">OYO-IVC-TAJNEED-PORTAL: 2023</span>
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">OYO-REGIONAL-IVC-(OYO) 2023-TAJNEED-PORTAL: 2023</span>
             </a>
             <div class="flex items-center lg:order-2">
                 <a href="#" class="text-gray-800 dark:text-white hover:bg-red-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log out</a>

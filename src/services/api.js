@@ -7,7 +7,7 @@ const base_url= 'http://localhost:4000/api'
 
 // registers new tifl
 export const RegisterAtfal = async (data) => {
-  const { fullName, age, dila, muqami, stage } = data;
+  const { fullName, age, dila, muqami, stage,amountPaid } = data;
 
   try {
     const response = await axios.post(`${base_url}/atfal/new`, {
@@ -16,10 +16,14 @@ export const RegisterAtfal = async (data) => {
       dila,
       muqami,
       stage,
+      amountPaid
     });
     console.log(response)
     if(!response){
         toast.error('unable to connect right now')
+    }
+    if(response.data.newAtfal==="Duplicate Entry Detected"){
+      
     }
 
     
@@ -63,7 +67,7 @@ export const Login = async (data) => {
       toast.error('Invalid Credentials')
     }
     else{
-      toast.success('Login Successful!')
+      await toast.success('Login Successful!')
       navigate('/home')
     }
 

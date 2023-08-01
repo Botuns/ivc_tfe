@@ -55,7 +55,7 @@ import {
 const ChartDataChart = ({ participants, atfal }) => {
     
   const data = {
-    labels: ['Participants', 'Atfal Registered'],
+    labels: ['Attendees Registered', 'Atfal Registered'],
     datasets: [
       {
         label: 'Analytics of People Registered',
@@ -82,7 +82,7 @@ const ChartDataChart = ({ participants, atfal }) => {
 
   return (
     <div className="bg-gray-200 p-6 rounded-lg shadow-lg h-[5cm] mt-[1cm]">
-      <h2 className="text-xl font-semibold mb-4">Chart - Number of Participants and Atfal Registered</h2>
+      <h2 className="text-xl font-semibold mb-4">Chart - Number of Attendees and Atfal Registered</h2>
       <Bar data={data} options={options} />
     </div>
   );

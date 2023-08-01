@@ -26,10 +26,10 @@ const Auth = () => {
           <img className="w-8 h-8 mr-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCqNuiuXCWRy76qvGIL6hFPRFwmUhcc_a7WQldY2NxoeB_QUYgeEb3xVWItmBAMp8kXWw&usqp=CAU" alt="logo"/>
           ATFAL REGIONAL IVC -OYO 2023    
       </a>
-      <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-500 dark:border-gray-700">
+      <div className="w-full bg-white rounded-lg shadow-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-500 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-green-500 md:text-2xl dark:text-white">
-                  Sign in to the IVC 2023 tajneed portal
+                  Sign in to the portal
               </h1>
               <div className="space-y-4 md:space-y-6" >
                   <div>

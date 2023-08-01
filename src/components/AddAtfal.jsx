@@ -13,6 +13,7 @@ const AddAtfal = () => {
   const [stage, setStage] = useState('');
   const [showSuccessModal, setSuccessModal]= useState(false)
   const [tagNumber, setTagNumber]= useState('')
+  const [amountPaid, setAmountPaid]= useState('')
 
   const closeModal=(e)=>{
     e.preventDefault()
@@ -22,13 +23,15 @@ const AddAtfal = () => {
   const handleSubmit =async (e) => {
     e.preventDefault();
     const data = {
-      fullName,age,muqami,dila,stage
+      fullName,age,muqami,dila,stage,amountPaid
     }
 
     const response = await RegisterAtfal(data)
     localStorage.setItem('atfal',JSON.stringify(response?.newAtfal))
     setTagNumber(response?.newAtfal._tagNumber)
-    setSuccessModal(true)
+    if(response.status===true){
+      setSuccessModal(true)
+    }
 
 
   };
@@ -56,6 +59,7 @@ const AddAtfal = () => {
             type="text"
             id="fullname"
             value={fullName}
+            required
             onChange={(e) => setFullName(e.target.value)}
             className="w-full px-4 py-2 border border-green-500 rounded-lg focus:outline-none focus:border-green-700"
           />
@@ -70,6 +74,7 @@ const AddAtfal = () => {
             id="age"
             value={age}
             onChange={(e) => setAge(e.target.value)}
+            required
             className="w-full px-4 py-2 border border-green-500 rounded-lg focus:outline-none focus:border-green-700"
           />
         </div>
@@ -82,6 +87,7 @@ const AddAtfal = () => {
             id="dil'a"
             value={dila}
             onChange={(e) => setDila(e.target.value)}
+            required
             className="w-full px-4 py-2 border border-green-500 rounded-lg focus:outline-none text-black focus:border-green-700"
           >
             <option value="">Select Dil'a</option>
@@ -110,7 +116,23 @@ const AddAtfal = () => {
             id="muqami"
             type='text'
             value={muqami}
+            required
             onChange={(e) => setMuqami(e.target.value)}
+            className="w-full px-4 py-2 border border-green-500 rounded-lg focus:outline-none text-black focus:border-green-700"
+          >            
+            {/* Add more options as needed */}
+          </input>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="muqami" className="block mb-1">
+            Amount Paid:
+          </label>
+          <input
+            id="muqami"
+            type='number'
+            value={amountPaid}
+            onChange={(e) => setAmountPaid(e.target.value)}
+            required
             className="w-full px-4 py-2 border border-green-500 rounded-lg focus:outline-none text-black focus:border-green-700"
           >            
             {/* Add more options as needed */}
@@ -125,6 +147,7 @@ const AddAtfal = () => {
             id="muqami"
             value={stage}
             onChange={(e) => setStage(e.target.value)}
+            required
             className="w-full px-4 py-2 border border-green-500 rounded-lg focus:outline-none text-black focus:border-green-700"
           >
             <option value="">Select Stage</option>
