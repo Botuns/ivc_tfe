@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'wouter';
 import { useLocationProperty, navigate } from "wouter/use-location";
 import { toast, Toaster } from 'react-hot-toast';
+import '../styles/sidebar.css'
 const AddAtfal = () => {
   // const navigate= useLocation()
   const [fullName, setFullName] = useState('');
@@ -50,7 +51,7 @@ const AddAtfal = () => {
   }
 
   return (
-    <div className="bg-white  text-black p-10 ml-[3cm] rounded-lg  border  w-[80%] border-green-500">
+    <div className="bg-white  text-black p-10 ml-[3cm] rounded-lg  border  w-[80%] border-green-500 form-r">
       <ToastContainer
     autoClose={5000}
     hideProgressBar={true}

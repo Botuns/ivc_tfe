@@ -11,7 +11,7 @@ const CountsDisplay = () => {
 
   const fetchCounts = async (dila) => {
     try {
-      const route = `http://localhost:4000/api/atfal/counts/${dila}`;
+      const route = `https://oyo-ivc2023-37ca5d32b76c.herokuapp.com/api/atfal/counts/${dila}`;
       const response = await axios.get(route);
       setCounts(response.data);
     } catch (error) {
@@ -21,7 +21,7 @@ const CountsDisplay = () => {
 
   const fetchNCounts = async (dila) => {
     try {
-      const route = `http://localhost:4000/api/atfal/payments`;
+      const route = `https://oyo-ivc2023-37ca5d32b76c.herokuapp.com/api/atfal/payments`;
       const response = await axios.get(route);
       setCountsN(response.data);
     } catch (error) {
@@ -64,7 +64,7 @@ const CountsDisplay = () => {
             <option value='Oke-ogun'>OKE-OGUN</option>
 
       </select>
-<button className=' mb-4 px-4 py-2 bg-green-500 text-white rounded-lg shadow-md' onClick={()=>fetchCounts()}>Get counts</button>
+{/* <button className=' mb-4 px-4 py-2 bg-green-500 text-white rounded-lg shadow-md' onClick={fetchCounts}>Get counts</button> */}
 
       </div>
 

@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { navigate } from 'wouter/use-location';
 
-const base_url= 'http://localhost:4000/api'
+const base_url= 'https://oyo-ivc2023-37ca5d32b76c.herokuapp.com/api'
 
 // registers new tifl
 export const RegisterAtfal = async (data) => {

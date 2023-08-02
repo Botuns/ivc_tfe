@@ -1,0 +1,10 @@
+@media (max-width: 767px) {
+    .sidebar {
+      display: none; /* Hide the sidebar on smartphones */
+    }
+    .form-r{
+        margin: 0;
+        padding: 4;
+
+    }
+  }

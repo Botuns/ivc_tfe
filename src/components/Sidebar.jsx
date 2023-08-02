@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'wouter'; // If using React Router for navigation
-
+import '../styles/sidebar.css'
 const Sidebar = () => {
   return (
-    <div className="bg-green-600 text-white h-screen w-56 flex flex-col justify-between ">
+    <div className="sidebar bg-green-600 text-white h-screen w-56 flex flex-col justify-between ">
       <div className="mt-8 mx-4">
         <div className="text-3xl font-semibold mb-8">Utilities</div>
         <nav>
