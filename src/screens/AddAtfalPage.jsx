@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
@@ -6,11 +6,25 @@ import DataCard from '../components/DataCard';
 import ChartDataChart from '../components/utils/ChartDataChart';
 import Cta from '../components/Cta';
 import AddAtfal from '../components/AddAtfal';
+import { navigate } from 'wouter/use-location';
+import { doesExistInStorage } from '../services/api';
 
 const AddAtfalPage = () => {
     const participants = 3200;
     const atfal = 1200;
-
+    const checkAuth=()=>{
+      const res = doesExistInStorage('auth')
+      if (res ===false){
+        navigate('/')
+      }
+      console.log('okay')
+    }
+    useEffect(() => {
+      checkAuth()
+    
+      
+    }, [])
+    
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
       {/* <!-- ===== Page Wrapper Start ===== --> */}

@@ -23,13 +23,13 @@ export const RegisterAtfal = async (data) => {
         toast.error('unable to connect right now')
     }
     if(response.data.newAtfal==="Duplicate Entry Detected"){
-      
+      toast.info('Duplicate Entry Detected',{position:'top-center'})
+      return
     }
 
     
     if(response.data.status===true){
        await toast.success('Atfal Registered sucessfully',{position:'top-center'})    
-      
       
       }
       
@@ -52,13 +52,13 @@ export const RegisterAtfal = async (data) => {
 };
 export const Login = async (data) => {
   const { username, password } = data;
+  console.log(data)
 
   try {
     const response = await axios.post(`${base_url}/auth/login`, {
       username,
       password
     });
-    console.log(response)
     if(!response){
       toast.error('unable to connect right now')
 
@@ -67,12 +67,16 @@ export const Login = async (data) => {
       toast.error('Invalid Credentials')
     }
     else{
-      await toast.success('Login Successful!')
+      console.log(response)
+      localStorage.setItem('auth',JSON.stringify(response.data?.user))
+      toast.success('Login Successful!')
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       navigate('/home')
     }
 
   } catch (error) {
     // Handle errors using toast notifications
+    console.log(error)
     toast.error(error.message);
   }
 };
@@ -239,3 +243,18 @@ export const getCountOfAtfalByStage = async (stage) => {
     console.error("Error in getCountOfAttendeesByAuxiliary:", error);
   }
 };
+
+export function doesExistInStorage(itemKey) {
+  const item = localStorage.getItem(itemKey);
+  return item !== null;
+}
+
+// Function to check if the auth contains admin and password
+export function isAuthAdminPassword() {
+  const authData = JSON.parse(localStorage.getItem('auth'));
+  return (
+    authData &&
+    authData._username === 'admin' &&
+    authData._password === 'password'
+  );
+}

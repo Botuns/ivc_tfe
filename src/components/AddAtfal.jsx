@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'wouter';
 import { useLocationProperty, navigate } from "wouter/use-location";
+import { toast, Toaster } from 'react-hot-toast';
 const AddAtfal = () => {
   // const navigate= useLocation()
   const [fullName, setFullName] = useState('');
@@ -22,18 +23,23 @@ const AddAtfal = () => {
 
   const handleSubmit =async (e) => {
     e.preventDefault();
-    const data = {
-      fullName,age,muqami,dila,stage,amountPaid
+    if(dila && muqami && stage && age && amountPaid && fullName){
+      const data = {
+        fullName,age,muqami,dila,stage,amountPaid
+      }
+  
+      const response = await RegisterAtfal(data)
+      localStorage.setItem('atfal',JSON.stringify(response?.newAtfal))
+      setTagNumber(response?.newAtfal._tagNumber)
+      if(response?.status===true){
+        setSuccessModal(true)
+      }
+  
+  
     }
-
-    const response = await RegisterAtfal(data)
-    localStorage.setItem('atfal',JSON.stringify(response?.newAtfal))
-    setTagNumber(response?.newAtfal._tagNumber)
-    if(response.status===true){
-      setSuccessModal(true)
+    else{
+      toast('All fields are required')
     }
-
-
   };
 
   const handlePrint=(e)=>{
@@ -49,6 +55,7 @@ const AddAtfal = () => {
     autoClose={5000}
     hideProgressBar={true}
 />
+<Toaster/>
       <h2 className="text-2xl font-semibold ml-[40%] mb-4 bg-green-500 p-[1px] rounded text-center w-[4cm] items-center align-middle">Add New Tifl</h2>
       <form>
         <div className="mb-4">

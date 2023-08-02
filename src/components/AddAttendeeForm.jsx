@@ -4,13 +4,14 @@ import { ToastContainer } from 'react-toastify';
 
 const AddAttendeeForm = () => {
   const [fullName, setFullName] = useState('');
+  const [phoneNumber, setPhone] = useState('');
   const [auxiliary, setAuxiliary] = useState(''); // Default to 'lajna'
   const [type, setType] = useState(''); // Default to 'Handler'
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     const attendeeData={
-      fullName,auxiliary,type
+      fullName,auxiliary,type,phoneNumber
     }
     await createAttendee(attendeeData)
   };
@@ -34,6 +35,19 @@ const AddAttendeeForm = () => {
         />
       </div>
       <div>
+        <label htmlFor="fullName" className="block text-gray-700">
+          Phone number: <span className='text-sm text-red-600 rounded'>optional</span>
+        </label>
+        <input
+          type="text"
+          id="fullName"
+          value={phoneNumber}
+          onChange={(e) => setPhone(e.target.value)}
+          className="block w-full px-4 py-2 rounded-lg shadow-sm focus:ring focus:ring-green-200 border border-green-500"
+          required
+        />
+      </div>
+      <div>
         <label htmlFor="auxiliary" className="block text-gray-700">
           Auxiliary:
         </label>
@@ -48,6 +62,7 @@ const AddAttendeeForm = () => {
           <option value="lajna">Lajna</option>
           <option value="khudam">Khudam</option>
           <option value="ansarullah">Ansarullah</option>
+          <option value="not-applicable">Not Applicable</option>
         </select>
       </div>
       <div>
@@ -70,7 +85,9 @@ const AddAttendeeForm = () => {
           <option value="Ishaat">Ishaat</option>
           <option value="Electricity">Electricity</option>
           <option value="Mobilization">Mobilization</option>
-          <option value="Volunteer">Volunteer</option>
+          <option value="State-Officer">State-Officer</option>
+          <option value="Mulk-Officer">Mulk-Officer</option>
+
         </select>
       </div>
       <button onClick={handleSubmit} className="px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 ">

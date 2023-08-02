@@ -2,14 +2,32 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
-import { getCountOfAllAtfal, getCountOfAllAttendees } from '../services/api';
+import { doesExistInStorage, getCountOfAllAtfal, getCountOfAllAttendees, isAuthAdminPassword } from '../services/api';
 import DataCard from '../components/DataCard';
 import ChartDataChart from '../components/utils/ChartDataChart';
 import Cta from '../components/Cta';
+import { navigate } from 'wouter/use-location';
+import { Toaster, toast } from 'react-hot-toast';
 
 const Home = () => {
     const [atfal,setAtfal] = useState(0)
     const [attendee,setAttendee]= useState(0)    
+
+    const checkAuth=()=>{
+      const res = doesExistInStorage('auth')
+      if (res ===false){
+        navigate('/')
+      }
+      console.log('okay')
+    }
+    const checkAdmin= async()=>{
+      const res = isAuthAdminPassword()
+      if(res===false){
+        toast('Unauthorized')
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        navigate('/new-tifl')
+      }
+    }
 const fetch =async()=>{
   const a = await getCountOfAllAtfal()
   const b = await getCountOfAllAttendees()
@@ -20,12 +38,15 @@ const fetch =async()=>{
 
     useEffect(() => {
       fetch()
+      checkAuth()
+      checkAdmin()
     }, []); // Add 'participants' as a dependency
     
     
 
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
+      <Toaster/>
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}

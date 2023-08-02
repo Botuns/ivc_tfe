@@ -2,23 +2,42 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
-import { getCountOfAllAtfal } from '../services/api';
+import { doesExistInStorage, getCountOfAllAtfal, isAuthAdminPassword } from '../services/api';
 import DataCard from '../components/DataCard';
 import ChartDataChart from '../components/utils/ChartDataChart';
 import Cta from '../components/Cta';
 import AllAtfal from '../components/AllAtfal';
 import AllAttendee from '../components/AllAttendee';
 import ExportPage from './ExportPage';
+import { navigate } from 'wouter/use-location';
+import { ToastBar, Toaster, toast } from 'react-hot-toast';
 
 const Export = () => {
+  const checkAuth=()=>{
+    const res = doesExistInStorage('auth')
+    if (res ===false){
+      navigate('/')
+    }
+    console.log('okay')
+  }
+  const checkAdmin= async()=>{
+    const res = isAuthAdminPassword()
+    if(res===false){
+      toast('Unauthorized')
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      navigate('/new-tifl')
+    }
+  }
 
     useEffect(() => {
+      checkAuth()
     }, []); // Add 'participants' as a dependency
     
     
 
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
+      <Toaster/>
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}

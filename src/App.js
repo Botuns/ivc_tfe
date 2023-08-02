@@ -13,6 +13,7 @@ import AddAttendee from './screens/AddAttendee';
 import AllAttendeePage from './screens/AllAttendeePage';
 import AteendeeCardPrint from './screens/AteendeeCardPrint';
 import Export from './screens/Export';
+import CountsDisplays from './screens/CountsDisplays';
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
         <Route path='/new-attendee'><AddAttendee/></Route>
         <Route path='/see-all-attendee'><AllAttendeePage/></Route>
         <Route path='/export-data'><Export/></Route>
+        <Route path='/counts'><CountsDisplays/></Route>
+
 
 
 

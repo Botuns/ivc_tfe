@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import { getAllAtfalByDila, getCountOfAllAtfal, getCountOfAllAttendees, getCountOfAtfalByStage, getCountOfAttendeesByAuxiliary, getCountOfAttendeesByType } from '../services/api';
+import { doesExistInStorage, getAllAtfalByDila, getCountOfAllAtfal, getCountOfAllAttendees, getCountOfAtfalByStage, getCountOfAttendeesByAuxiliary, getCountOfAttendeesByType, isAuthAdminPassword } from '../services/api';
 import { ToastContainer } from 'react-toastify';
 import toast, { Toaster } from 'react-hot-toast';
 import DataCard from '../components/DataCard';
+import { navigate } from 'wouter/use-location';
 
 const Statistics = () => {
     const [atfal,setAtfal] = useState(0)
@@ -15,6 +16,21 @@ const Statistics = () => {
     const [type, setType] = useState('');
 
     const [count,SetCount]=useState(0)
+    const checkAdmin= async()=>{
+      const res = isAuthAdminPassword()
+      if(res===false){
+        toast('Unauthorized')
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        navigate('/new-tifl')
+      }
+    }
+    const checkAuth=()=>{
+      const res = doesExistInStorage('auth')
+      if (res ===false){
+        navigate('/')
+      }
+      console.log('okay')
+    }
     const fetchNo =async()=>{
       const a = await getCountOfAllAtfal()
       const b = await getCountOfAllAttendees()
@@ -23,6 +39,8 @@ const Statistics = () => {
     }
     useEffect(() => {
       fetchNo()
+      checkAuth()
+      checkAdmin()
     }, []); // Add 'participants' as a dependency
     // done
 const fetch =async()=>{

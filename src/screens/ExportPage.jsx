@@ -2,12 +2,20 @@ import React from 'react';
 import * as XLSX from 'xlsx'; // Use 'xlsx' library to handle CSV conversion
 import { saveAs } from 'file-saver'; // Use 'file-saver' library to handle file download
 import toast, { Toaster } from 'react-hot-toast';
-import { getAllAtfal } from '../services/api';
+import { doesExistInStorage, getAllAtfal } from '../services/api';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { navigate } from 'wouter/use-location';
 
 const ExportPage = () => {
   const[data,setData]= useState([])
+  const checkAuth=()=>{
+    const res = doesExistInStorage('auth')
+    if (res ===false){
+      navigate('/')
+    }
+    console.log('okay')
+  }
   function CheckNull(){
     if(!data){
       toast('ERROR FETCHING DATA!')
@@ -22,6 +30,8 @@ const ExportPage = () => {
   useEffect(() => {
     fetch();
     CheckNull()
+    checkAuth()
+
   }, []);
   const exportToCSV =async () => {
     await toast('getting it done!');

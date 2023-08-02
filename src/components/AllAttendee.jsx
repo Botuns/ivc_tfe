@@ -122,7 +122,7 @@ const AllAttendee = () => {
                   Tag Number
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Created At
+                  Phone number
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Actions
@@ -138,7 +138,7 @@ const AllAttendee = () => {
                   <td className="px-6 py-4">{item.auxiliary}</td>
                   <td className="px-6 py-4">{item.type}</td>
                   <td className="px-6 py-4">{item.tagNumber}</td>
-                  <td className="px-6 py-4">{item.createdAt}</td>
+                  <td className="px-6 py-4">{item?.phoneNumber}</td>
                   <td className="px-6 py-4">
                     <button
                       onClick={() => {
