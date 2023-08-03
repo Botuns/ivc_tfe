@@ -8,6 +8,7 @@ import ChartDataChart from '../components/utils/ChartDataChart';
 import Cta from '../components/Cta';
 import { navigate } from 'wouter/use-location';
 import { Toaster, toast } from 'react-hot-toast';
+import '../styles/home.mobile.css'
 
 const Home = () => {
     const [atfal,setAtfal] = useState(0)
@@ -63,7 +64,7 @@ const fetch =async()=>{
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
               {/* <Outlet />   others goes here*/}  
-              <div className='flex flex-row'>
+              <div className='flex flex-row home-card'>
               <DataCard figure={atfal} name='Total Atfal'/>
               <DataCard figure={attendee} name={'Total Attendees'}/>
               <DataCard figure={atfal + attendee} name={'Total Present'}/>

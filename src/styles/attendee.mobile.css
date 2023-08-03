@@ -1,0 +1,10 @@
+@media (max-width: 767px) {
+    .att{
+      /* Adjust the width to fit the mobile screen better or use 100% */
+      width: 100%;
+      margin: 0;
+      padding: auto;
+      margin-top: 2cm;
+    }
+}
+  

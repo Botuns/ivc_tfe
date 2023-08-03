@@ -1,0 +1,7 @@
+@media (max-width: 767px) {
+    .home-card{
+      /* Adjust the width to fit the mobile screen better or use 100% */
+      flex-direction: column;
+    }
+}
+  

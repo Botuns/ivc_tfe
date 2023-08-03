@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'wouter';
 import { useLocationProperty, navigate } from "wouter/use-location";
 import { toast, Toaster } from 'react-hot-toast';
-import '../styles/sidebar.css'
+// import '../styles/sidebar.css'
+import '../styles/atfal.mobile.css'
 const AddAtfal = () => {
   // const navigate= useLocation()
   const [fullName, setFullName] = useState('');
@@ -51,14 +52,14 @@ const AddAtfal = () => {
   }
 
   return (
-    <div className="bg-white  text-black p-10 ml-[3cm] rounded-lg  border  w-[80%] border-green-500 form-r">
+    <div className="bg-white  text-black p-10 ml-[3cm] rounded-lg  border  w-[80%] border-green-500 form-r att">
       <ToastContainer
     autoClose={5000}
     hideProgressBar={true}
 />
 <Toaster/>
-      <h2 className="text-2xl font-semibold ml-[40%] mb-4 bg-green-500 p-[1px] rounded text-center w-[4cm] items-center align-middle">Add New Tifl</h2>
-      <form>
+      <h2 className="text-2xl font-semibold ml-[40%] mb-4 bg-green-500 p-[1px] rounded text-center w-[4cm] items-center align-middle head">Add New Tifl</h2>
+      <form className=''>
         <div className="mb-4">
           <label htmlFor="fullname" className="block mb-1">
             Full Name:

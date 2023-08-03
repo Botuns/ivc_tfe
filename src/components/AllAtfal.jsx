@@ -3,6 +3,7 @@ import { getAllAtfal, getAllAtfalByIds, showToast } from '../services/api';
 import { navigate } from 'wouter/use-location';
 import { ToastContainer } from 'react-toastify';
 import toast, { Toaster } from 'react-hot-toast';
+import '../styles/allatfal.mobile.css'
 
 const AllAtfal = () => {
   const [data, setData] = useState([]);
@@ -158,7 +159,7 @@ const AllAtfal = () => {
           </button>
         </div>
 
-        <p onClick={AddtoPrint} className="px-1 w-24 text-center mb-4 text-sm ml-[25cm] h-[1cm] bg-red-500 rounded hover:cursor-pointer">
+        <p onClick={AddtoPrint} className="px-1 w-24 text-center mb-4 text-sm ml-[25cm] h-[1cm] bg-red-500 rounded hover:cursor-pointer dis">
           Print Selected
         </p>
          <div className="relative overflow-x-auto">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createAttendee } from '../services/api';
 import { ToastContainer } from 'react-toastify';
+import '../styles/attendee.mobile.css'
 
 const AddAttendeeForm = () => {
   const [fullName, setFullName] = useState('');
@@ -20,7 +21,7 @@ const AddAttendeeForm = () => {
     <div>
       <ToastContainer/>
         <p className='p-3 rounded bg-green-500 text-center font-bold text-white text-xl'>Register: Attendee</p>
-        <div  className="space-y-4 mt-8 shadow-lg p-4 w-[80%] justify-center items-center ml-24">
+        <div  className="space-y-4 mt-8 shadow-lg p-4 w-[80%] justify-center items-center ml-24 att ">
       <div>
         <label htmlFor="fullName" className="block text-gray-700">
           Full Name:
