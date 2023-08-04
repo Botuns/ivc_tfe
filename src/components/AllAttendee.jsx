@@ -3,6 +3,8 @@ import { getAllAtfal, getAllAtfalByIds, getAllAttendeeByIds, getAllAttendees, sh
 import { navigate } from 'wouter/use-location';
 import { ToastContainer } from 'react-toastify';
 import toast, { Toaster } from 'react-hot-toast';
+import { ColorRing } from 'react-loader-spinner';
+
 
 
 
@@ -11,6 +13,7 @@ const AllAttendee = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [printbtn,setPrintBtn]= useState('Add to bulk Print')
+  const [loader , setLoader] = useState(false)
   const [ids, setids]=useState([])
   function CheckNull(){
     if(!data){
@@ -55,9 +58,11 @@ const AllAttendee = () => {
 };
 
   const fetch = async () => {
+    setLoader(true)
     const response = await getAllAttendees();
     setData(response);
     setData(response?.map(item => ({ ...item, printBtn: 'Add to Bulk Print' })));
+    setLoader(false)
   };
 
   useEffect(() => {
@@ -179,6 +184,22 @@ const AllAttendee = () => {
           </button>
           <p className="ml-4 font-extrabold bg-green-500 p-1 rounded">Page {currentPage}</p>
         </div>
+        {
+        loader&&(
+          <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-80'>
+            <ColorRing
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
+
+          </div>
+        )
+      }
       </div>
     </>
   );

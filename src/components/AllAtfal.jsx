@@ -4,6 +4,8 @@ import { navigate } from 'wouter/use-location';
 import { ToastContainer } from 'react-toastify';
 import toast, { Toaster } from 'react-hot-toast';
 import '../styles/allatfal.mobile.css'
+import { ColorRing } from 'react-loader-spinner';
+
 
 const AllAtfal = () => {
   const [data, setData] = useState([]);
@@ -12,6 +14,8 @@ const AllAtfal = () => {
   const [printbtn, setPrintBtn] = useState('Add to bulk Print');
   const [ids, setIds] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [loader , setLoader] = useState(false)
+
 
   function CheckNull() {
     if (!data) {
@@ -72,9 +76,11 @@ const AllAtfal = () => {
     setSelectedStatus('');
   };
   const fetch = async () => {
+    setLoader(true)
     const response = await getAllAtfal();
     setData(response);
     setData(response?.map((item) => ({ ...item, printBtn: 'Add to Bulk Print' })));
+    setLoader(false)
   };
 
   useEffect(() => {
@@ -241,6 +247,22 @@ const AllAtfal = () => {
           <p className="ml-4 font-extrabold bg-green-500 p-1 rounded">Page {currentPage}</p>
         </div>
       </div>
+      {
+        loader&&(
+          <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-80'>
+            <ColorRing
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
+
+          </div>
+        )
+      }
     </>
   );
 };

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'wouter';
 import { useLocationProperty, navigate } from "wouter/use-location";
 import { toast, Toaster } from 'react-hot-toast';
+import { ColorRing } from 'react-loader-spinner';
 // import '../styles/sidebar.css'
 import '../styles/atfal.mobile.css'
 const AddAtfal = () => {
@@ -17,6 +18,7 @@ const AddAtfal = () => {
   const [showSuccessModal, setSuccessModal]= useState(false)
   const [tagNumber, setTagNumber]= useState('')
   const [amountPaid, setAmountPaid]= useState('')
+  const [loader , setLoader] = useState(false)
 
   const closeModal=(e)=>{
     e.preventDefault()
@@ -26,6 +28,7 @@ const AddAtfal = () => {
   const handleSubmit =async (e) => {
     e.preventDefault();
     if(dila && muqami && stage && age && amountPaid && fullName){
+      setLoader(true)
       const data = {
         fullName,age,muqami,dila,stage,amountPaid
       }
@@ -33,6 +36,7 @@ const AddAtfal = () => {
       const response = await RegisterAtfal(data)
       localStorage.setItem('atfal',JSON.stringify(response?.newAtfal))
       setTagNumber(response?.newAtfal._tagNumber)
+      setLoader(false)
       if(response?.status===true){
         setSuccessModal(true)
       }
@@ -213,6 +217,22 @@ const AddAtfal = () => {
           </div>
 
           </>
+        )
+      }
+      {
+        loader&&(
+          <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-80'>
+            <ColorRing
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
+
+          </div>
         )
       }
     </div>

@@ -2,19 +2,25 @@ import React, { useState } from 'react';
 import { createAttendee } from '../services/api';
 import { ToastContainer } from 'react-toastify';
 import '../styles/attendee.mobile.css'
+import { ColorRing } from 'react-loader-spinner';
+
 
 const AddAttendeeForm = () => {
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhone] = useState('');
   const [auxiliary, setAuxiliary] = useState(''); // Default to 'lajna'
   const [type, setType] = useState(''); // Default to 'Handler'
+  const [loader , setLoader] = useState(false)
+
 
   const handleSubmit = async(e) => {
+    setLoader(true)
     e.preventDefault();
     const attendeeData={
       fullName,auxiliary,type,phoneNumber
     }
     await createAttendee(attendeeData)
+    setLoader(false)
   };
 
   return (
@@ -97,6 +103,22 @@ const AddAttendeeForm = () => {
         Add Attendee
       </button>
     </div>
+    {
+        loader&&(
+          <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-80'>
+            <ColorRing
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
+
+          </div>
+        )
+      }
     </div>
   );
 };

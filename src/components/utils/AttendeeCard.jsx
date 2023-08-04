@@ -32,7 +32,7 @@ const UserCard = ({ user }) => {
         <p className="text-white text-sm font-semibold">{_capitalizeName(user.fullName)}</p>
 
         <p className="text-white text-sm font-medium mt-4">Auxiliary:</p>
-        <p className="text-white text-lg font-semibold">{user.auxiliary}</p>
+        <p className="text-white text-sm font-semibold">{user.auxiliary}</p>
       </div>
 
       <div>
@@ -45,7 +45,7 @@ const UserCard = ({ user }) => {
     </div>
 
     <div className="mt-6">
-      <p className="text-white text-sm font-medium">Phone Number At:</p>
+      <p className="text-white text-sm font-medium">Phone Number:</p>
       <p className="text-white text-sm font-semibold">{user?.phoneNumber || "confidential"}</p>
 
       <p className="text-white text-sm font-medium">Created At:</p>

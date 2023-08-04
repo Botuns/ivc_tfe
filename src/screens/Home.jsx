@@ -9,10 +9,14 @@ import Cta from '../components/Cta';
 import { navigate } from 'wouter/use-location';
 import { Toaster, toast } from 'react-hot-toast';
 import '../styles/home.mobile.css'
+import { ColorRing } from 'react-loader-spinner';
+
 
 const Home = () => {
     const [atfal,setAtfal] = useState(0)
     const [attendee,setAttendee]= useState(0)    
+    const [loader , setLoader] = useState(false)
+
 
     const checkAuth=()=>{
       const res = doesExistInStorage('auth')
@@ -30,8 +34,10 @@ const Home = () => {
       }
     }
 const fetch =async()=>{
+  setLoader(true)
   const a = await getCountOfAllAtfal()
   const b = await getCountOfAllAttendees()
+  setLoader(false)
   setAtfal(a||0)
   setAttendee(b)
 }
@@ -82,6 +88,22 @@ const fetch =async()=>{
         {/* <!-- ===== Content Area End ===== --> */}
       </div>
       {/* <!-- ===== Page Wrapper End ===== --> */}
+      {
+        loader&&(
+          <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-80'>
+            <ColorRing
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
+
+          </div>
+        )
+      }
     </div>
   );
 };
