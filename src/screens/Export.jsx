@@ -31,6 +31,7 @@ const Export = () => {
 
     useEffect(() => {
       checkAuth()
+      checkAdmin()
     }, []); // Add 'participants' as a dependency
     
     

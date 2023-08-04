@@ -236,7 +236,7 @@ const fetchStage =async()=>{
             <option value='Oluyole-Onaara'>OLUYOLE-ONA-ARA</option>
             <option value='Omi-adio'>OMI-ADIO</option>
             <option value='Oyo'>OYO</option>
-            <option value=''></option>
+            <option value='Oke-ogun'>Oke-Ogun</option>
 
             {/* Add more options as needed */}
           </select>
@@ -267,7 +267,10 @@ const fetchStage =async()=>{
           <option value="Ishaat">Ishaat</option>
           <option value="Electricity">Electricity</option>
           <option value="Mobilization">Mobilization</option>
-          <option value="Volunteer">Volunteer</option>
+          <option value="State-Officer">State-Officer</option>
+          <option value="Mulk-Officer">Mulk-Officer</option>
+          <option value="Plumbing">Plumbing</option>
+
 
             {/* Add more options as needed */}
           </select>

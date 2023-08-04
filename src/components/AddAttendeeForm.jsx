@@ -88,6 +88,8 @@ const AddAttendeeForm = () => {
           <option value="Mobilization">Mobilization</option>
           <option value="State-Officer">State-Officer</option>
           <option value="Mulk-Officer">Mulk-Officer</option>
+          <option value="Plumbing">Plumbing</option>
+
 
         </select>
       </div>
