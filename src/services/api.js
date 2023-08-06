@@ -166,6 +166,22 @@ export const getAllAtfal = async()=>{
       toast.error(error)
     }
     }
+    export const returnAllAtfalByDila = async(dila)=>{
+      console.log('seen')
+    try {
+    const response = await axios.get(`${base_url}/atfal/dila/${dila}`); // Pass ids as a URL parameter
+      console.log(response.data.length)
+      if(!response){
+        toast.error('cant connect right now and i don\'t know why')
+      }
+        if(response ===500){
+          toast.error('An error occured while fetching lists')
+        }  
+        return response.data
+    } catch (error) {
+      toast.error(error)
+    }
+    }
 
 export const showToast=()=>{
   return toast.error('You have not selected any tag to print')

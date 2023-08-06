@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllAtfal, getAllAtfalByIds, showToast } from '../services/api';
+import { getAllAtfal, getAllAtfalByIds, returnAllAtfalByDila, showToast } from '../services/api';
 import { navigate } from 'wouter/use-location';
 import { ToastContainer } from 'react-toastify';
 import toast, { Toaster } from 'react-hot-toast';
@@ -14,8 +14,11 @@ const AllAtfal = () => {
   const [printbtn, setPrintBtn] = useState('Add to bulk Print');
   const [ids, setIds] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [selectedDila, setSelectedDila] = useState('');
   const [loader , setLoader] = useState(false)
-
+const handleDilaChange = (e) => {
+    setSelectedDila(e.target.value);
+  };
 
   function CheckNull() {
     if (!data) {
@@ -82,11 +85,30 @@ const AllAtfal = () => {
     setData(response?.map((item) => ({ ...item, printBtn: 'Add to Bulk Print' })));
     setLoader(false)
   };
+  const fetchDataByDila = async () => {
+    try {
+      setLoader(true);
+      // Replace this API call with the appropriate one to fetch data based on selected "dil'a"
+      const response = await returnAllAtfalByDila(selectedDila);
+      setData(response);
+          setData(response?.map((item) => ({ ...item, printBtn: 'Add to Bulk Print' })));
+
+      setLoader(false);
+    } catch (error) {
+      toast.error('Error fetching data by dil\'a!');
+      setLoader(false);
+    }
+  };
 
   useEffect(() => {
-    fetch();
+    if (selectedDila) {
+      fetchDataByDila();
+    } else {
+      // If no "dil'a" is selected, fetch all data
+      fetch();
+    }
     CheckNull();
-  }, []);
+  }, [selectedDila]);
 
   useEffect(() => {
     // Filter the data based on the search term and selected status
@@ -163,6 +185,25 @@ const AllAtfal = () => {
           >
             Clear Filter
           </button>
+        <select
+          value={selectedDila}
+          onChange={handleDilaChange}
+          className="p-2 border border-gray-300 rounded text-sm"
+        >
+          <option value="">All Dil'a</option>
+            <option value="Akinyele">AKINYELE</option>
+            <option value="Apata">APATA</option>
+            <option value='Asipa-Oleyo'>ASHIPA-OLEYO</option>
+            <option value='Coca-cola'>COCA-COLA</option>
+            <option value='Ikoyi-ile-Ogbomosho'>IKOYILE-OGBOMOSHO</option>
+            <option value='Ibadan'>IBADAN</option>
+            <option value='Ibarapa'>IBARAPA</option>
+            <option value='Monatan'>MONATAN</option>
+            <option value='Oluyole-Onaara'>OLUYOLE-ONA-ARA</option>
+            <option value='Omi-adio'>OMI-ADIO</option>
+            <option value='Oyo'>OYO</option>
+            <option value='Oke-ogun'>OKE-OGUN</option>
+        </select>
         </div>
 
         <p onClick={AddtoPrint} className="px-1 w-24 text-center mb-4 text-sm ml-[25cm] h-[1cm] bg-red-500 rounded hover:cursor-pointer dis">
@@ -209,11 +250,11 @@ const AllAtfal = () => {
                   <td className="px-6 py-4">
                     <button
                       onClick={() => {
-                        // Handle view details action here
+                        window.alert(item._id)
                       }}
                       className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
                     >
-                      View Details
+                      Update Payment
                     </button>
                     <button
                       onClick={() => handleAddToPrint(item._id)}
