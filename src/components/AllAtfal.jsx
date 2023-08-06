@@ -16,6 +16,8 @@ const AllAtfal = () => {
   const [selectedStatus, setSelectedStatus] = useState('');
   const [selectedDila, setSelectedDila] = useState('');
   const [loader , setLoader] = useState(false)
+  const [showUpdate,setShowUpdate]=useState(false)
+  const [currentAmountPaid , setCurentAmountPaid] = useState(0)
 const handleDilaChange = (e) => {
     setSelectedDila(e.target.value);
   };
@@ -43,6 +45,12 @@ const handleDilaChange = (e) => {
     } catch (error) {
       toast(error)
     }
+
+  }
+
+  function bb(){
+    window.alert('heelo')
+    setShowUpdate(true)
 
   }
 
@@ -109,6 +117,15 @@ const handleDilaChange = (e) => {
     }
     CheckNull();
   }, [selectedDila]);
+  const handleUpdatePayment = (amount) => {
+    setCurentAmountPaid(amount)
+    setShowUpdate(true);
+  };
+
+  const handleUpdateclose = () => {
+    setShowUpdate(false);
+  };
+
 
   useEffect(() => {
     // Filter the data based on the search term and selected status
@@ -249,9 +266,11 @@ const handleDilaChange = (e) => {
                   <td className="px-6 py-4 "><div className='bg-green-500 text-white font-extrabold p-1 rounded-md text-center'>{item.status}</div></td>
                   <td className="px-6 py-4">
                     <button
-                      onClick={() => {
-                        window.alert(item._id)
-                      }}
+                      onClick={
+                        ()=>handleUpdatePayment(item.amountPaid)
+                        // window.alert(item.amountPaid)
+                        
+                      }
                       className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
                     >
                       Update Payment
@@ -300,10 +319,48 @@ const handleDilaChange = (e) => {
   wrapperClass="blocks-wrapper"
   colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
 />
-
           </div>
         )
       }
+
+{
+  showUpdate&&(
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+  <div className="fixed inset-0 bg-black opacity-50"></div>
+  <div className="bg-white w-96 p-8 rounded shadow-lg z-10">
+    <h2 className="text-xl font-semibold mb-4">Update Payment Status</h2>
+    <div className="mb-4">
+      <label className="block mb-2 font-semibold">Current Amount Paid:</label>
+      <p>{currentAmountPaid}</p>
+    </div>
+    <div className="mb-4">
+      <label className="block mb-2 font-semibold">Amount to Update:</label>
+      <input
+        type="number"
+        // value={amountToAdd}
+        // onChange={handleAmountChange}
+        className="w-full border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
+      />
+    </div>
+    <div className="flex justify-end">
+      <button
+        // onClick={handleUpdatePayment}
+        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-green-600"
+      >
+        Update Payment
+      </button>
+      <button
+        onClick={handleUpdateclose}
+        className="ml-4 text-gray-600 py-2 px-4 rounded hover:bg-gray-200"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+  )
+}
     </>
   );
 };
