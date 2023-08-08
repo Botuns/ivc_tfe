@@ -26,12 +26,12 @@ const UserCard = ({ user }) => {
       />
     </div>
     <hr className="font-[900]" />
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-3">
       <div>
         <p className="text-white text-sm font-medium">Full Name:</p>
         <p className="text-white text-sm font-semibold">{_capitalizeName(user.fullName)}</p>
 
-        <p className="text-white text-sm font-medium mt-4">Auxiliary:</p>
+        <p className="text-white text-sm font-medium mt-2">Auxiliary:</p>
         <p className="text-white text-sm font-semibold">{user.auxiliary}</p>
       </div>
 
@@ -39,17 +39,17 @@ const UserCard = ({ user }) => {
         <p className="text-white text-sm font-medium">Type:</p>
         <p className="text-white text-sm font-semibold">{user.type}</p>
 
-        <p className="text-white text-sm font-medium mt-4">Tag Number:</p>
+        <p className="text-white text-sm font-medium mt-2">Tag Number:</p>
         <p className="text-white text-sm font-semibold">{user.tagNumber}</p>
       </div>
     </div>
 
-    <div className="mt-6">
+    <div className="mt-[.5]">
       <p className="text-white text-sm font-medium">Phone Number:</p>
       <p className="text-white text-sm font-semibold">{user?.phoneNumber || "confidential"}</p>
 
-      <p className="text-white text-sm font-medium">Created At:</p>
-      <p className="text-white text-sm font-semibold">{user.createdAt}</p>
+      <p className="text-white text-sm font-medium">Dila :</p>
+      <p className="text-white text-sm font-semibold">{user.dila}</p>
     </div>
   </div>
 </div>

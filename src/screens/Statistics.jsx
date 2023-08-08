@@ -270,6 +270,12 @@ const fetchStage =async()=>{
           <option value="State-Officer">State-Officer</option>
           <option value="Mulk-Officer">Mulk-Officer</option>
           <option value="Plumbing">Plumbing</option>
+          <option value="Vip-Care">Vip-care</option>
+          <option value="Tajneed">Tajneed</option>
+          <option value="Sports">Sports</option>
+          <option value="Wakariamoh">Wakariamoh</option>
+          <option value="Medical">Medical</option>
+
 
 
             {/* Add more options as needed */}

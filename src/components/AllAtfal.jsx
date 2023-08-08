@@ -18,6 +18,7 @@ const AllAtfal = () => {
   const [loader , setLoader] = useState(false)
   const [showUpdate,setShowUpdate]=useState(false)
   const [currentAmountPaid , setCurentAmountPaid] = useState(0)
+  const [u_amount,setU_amount] = useState(0);
 const handleDilaChange = (e) => {
     setSelectedDila(e.target.value);
   };

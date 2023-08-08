@@ -220,6 +220,22 @@ export const getCountOfAttendeesByType = async (type) => {
   }
 };
 
+// update dila and duty
+
+export const updateAttendee = async (data)=>{
+  const {attendeeId,newDila,newType} = data
+  try {
+    const response = await axios.put(`${base_url}/attendee/update/${attendeeId}/${newDila}/${newType}`)
+    console.log(response)
+    if (response.status===200) {
+      return true
+    }
+    return false
+  } catch (error) {
+    toast.error(error)
+  }
+
+}
 // Method to get count of attendees by auxiliary
 export const getCountOfAttendeesByAuxiliary = async (auxiliary) => {
   try {

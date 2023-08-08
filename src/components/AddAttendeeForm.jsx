@@ -8,6 +8,7 @@ import { ColorRing } from 'react-loader-spinner';
 const AddAttendeeForm = () => {
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhone] = useState('');
+  const [dila, setDila] = useState('');
   const [auxiliary, setAuxiliary] = useState(''); // Default to 'lajna'
   const [type, setType] = useState(''); // Default to 'Handler'
   const [loader , setLoader] = useState(false)
@@ -17,7 +18,7 @@ const AddAttendeeForm = () => {
     setLoader(true)
     e.preventDefault();
     const attendeeData={
-      fullName,auxiliary,type,phoneNumber
+      fullName,auxiliary,type,dila,phoneNumber
     }
     await createAttendee(attendeeData)
     setLoader(false)
@@ -95,9 +96,48 @@ const AddAttendeeForm = () => {
           <option value="State-Officer">State-Officer</option>
           <option value="Mulk-Officer">Mulk-Officer</option>
           <option value="Plumbing">Plumbing</option>
+          <option value="Plumbing">Vip-care</option>
+          <option value="Tajneed">Tajneed</option>
+          <option value="Sports">Sports</option>
+          <option value="Wakariamoh">Wakariamoh</option>
+          <option value="Medical">Medical</option>
+          {/* <option value="Wakariamoh">Wakariamoh</option> */}
+
+
+
+
 
 
         </select>
+      </div>
+      <div>
+      <label htmlFor="type" className="block text-gray-700">
+          Dila:
+        </label>
+        <select
+            id="dil'a"
+            value={dila}
+            onChange={(e) => setDila(e.target.value)}
+            required
+            className="w-full px-4 py-2 border border-green-500 rounded-lg focus:outline-none text-black focus:border-green-700"
+          >
+            <option value="">Select Dil'a</option>
+            <option value="none">Not Applicable</option>
+            <option value="Akinyele">AKINYELE</option>
+            <option value="Apata">APATA</option>
+            <option value='Asipa-Oleyo'>ASHIPA-OLEYO</option>
+            <option value='Coca-cola'>COCA-COLA</option>
+            <option value='Ikoyi-ile-Ogbomosho'>IKOYILE-OGBOMOSHO</option>
+            <option value='Ibadan'>IBADAN</option>
+            <option value='Ibarapa'>IBARAPA</option>
+            <option value='Monatan'>MONATAN</option>
+            <option value='Oluyole-Onaara'>OLUYOLE-ONA-ARA</option>
+            <option value='Omi-adio'>OMI-ADIO</option>
+            <option value='Oyo'>OYO</option>
+            <option value='Oke-ogun'>OKE-OGUN</option>
+
+            {/* Add more options as needed */}
+          </select>
       </div>
       <button onClick={handleSubmit} className="px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 ">
         Add Attendee

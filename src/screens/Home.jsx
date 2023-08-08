@@ -76,7 +76,7 @@ const fetch =async()=>{
               <DataCard figure={atfal + attendee} name={'Total Present'}/>
               </div>
 
-              <ChartDataChart participants={participants} atfal={atfal} />
+              <ChartDataChart participants={attendee} atfal={atfal} />
 
 
 
